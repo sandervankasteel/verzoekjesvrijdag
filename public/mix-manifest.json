@@ -1,5 +1,6 @@
 {
-    "/js/material.min.js": "/js/material.min.js",
     "/css/app.css": "/css/app.css",
-    "/css/mdl.css": "/css/mdl.css"
+    "/css/mdl.css": "/css/mdl.css",
+    "/js/material.min.js": "/js/material.min.js",
+    "/js/mo.min.js": "/js/mo.min.js"
 }
