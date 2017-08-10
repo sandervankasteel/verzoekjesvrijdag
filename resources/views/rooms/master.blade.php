@@ -41,7 +41,7 @@
                         <iframe width="560" height="400" src="https://www.youtube.com/embed/VZYp7eM8UNY" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <h3>Coming up!</h3>
+                        <h3 class="vv-h3--playlist_title">Coming up!</h3>
                         <ul class="demo-list-three mdl-list">
                             <li class="mdl-list__item mdl-list__item--three-line">
                                 <span class="mdl-list__item-primary-content">
@@ -49,11 +49,15 @@
                                 <span>Rick Astley</span>
                                     <span class="mdl-list__item-text-body">
                                     Never gonna give you up
-                                        <div class="">Added by xyz</div>
+                                        <div class="playlist-list_item--name">Added by xyz</div>
                                     </span>
                                 </span>
                                 <span class="mdl-list__item-secondary-content">
-                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+                                    <div class="vv-item--playlist_item_score good">
+                                        100%
+                                    </div>
+                                    <span class="vote-up"><a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a></span>
+                                    <span class="vote-down"><a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a></span>
                                 </span>
                             </li>
                             <li class="mdl-list__item mdl-list__item--three-line">
@@ -66,7 +70,11 @@
                                     </span>
                                 </span>
                                 <span class="mdl-list__item-secondary-content">
-                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+                                    <div class="vv-item--playlist_item_score neutral">
+                                        65%
+                                    </div>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a>
                                 </span>
                             </li>
                             <li class="mdl-list__item mdl-list__item--three-line">
@@ -79,7 +87,113 @@
                                     </span>
                                 </span>
                                 <span class="mdl-list__item-secondary-content">
-                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+                                    <div class="vv-item--playlist_item_score bad">
+                                        30%
+                                    </div>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a>
+                                </span>
+                            </li>
+                            <li class="mdl-list__item mdl-list__item--three-line">
+                                <span class="mdl-list__item-primary-content">
+                                    <img class="mdl-list__item-avatar" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBQZfoSOXTWVau7H6ztlvfGyeB9nQ" height="40" width="40" />
+                                <span>Rick Astley</span>
+                                    <span class="mdl-list__item-text-body">
+                                    Never gonna give you up
+                                        <div class="playlist-list_item--name">Added by xyz</div>
+                                    </span>
+                                </span>
+                                <span class="mdl-list__item-secondary-content">
+                                    <div class="vv-item--playlist_item_score good">
+                                        100%
+                                    </div>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a>
+                                </span>
+                            </li>
+                            <li class="mdl-list__item mdl-list__item--three-line">
+                                <span class="mdl-list__item-primary-content">
+                                    <img class="mdl-list__item-avatar" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBQZfoSOXTWVau7H6ztlvfGyeB9nQ" height="40" width="40" />
+                                <span>Rick Astley</span>
+                                    <span class="mdl-list__item-text-body">
+                                    Never gonna give you up
+                                        <div class="">Added by xyz</div>
+                                    </span>
+                                </span>
+                                <span class="mdl-list__item-secondary-content">
+                                    <div class="vv-item--playlist_item_score neutral">
+                                        65%
+                                    </div>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a>
+                                </span>
+                            </li>
+                            <li class="mdl-list__item mdl-list__item--three-line">
+                                <span class="mdl-list__item-primary-content">
+                                    <img class="mdl-list__item-avatar" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBQZfoSOXTWVau7H6ztlvfGyeB9nQ" height="40" width="40" />
+                                <span>Rick Astley</span>
+                                    <span class="mdl-list__item-text-body">
+                                    Never gonna give you up
+                                        <div class="">Added by xyz</div>
+                                    </span>
+                                </span>
+                                <span class="mdl-list__item-secondary-content">
+                                    <div class="vv-item--playlist_item_score bad">
+                                        30%
+                                    </div>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a>
+                                </span>
+                            </li>
+                            <li class="mdl-list__item mdl-list__item--three-line">
+                                <span class="mdl-list__item-primary-content">
+                                    <img class="mdl-list__item-avatar" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBQZfoSOXTWVau7H6ztlvfGyeB9nQ" height="40" width="40" />
+                                <span>Rick Astley</span>
+                                    <span class="mdl-list__item-text-body">
+                                    Never gonna give you up
+                                        <div class="playlist-list_item--name">Added by xyz</div>
+                                    </span>
+                                </span>
+                                <span class="mdl-list__item-secondary-content">
+                                    <div class="vv-item--playlist_item_score good">
+                                        100%
+                                    </div>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a>
+                                </span>
+                            </li>
+                            <li class="mdl-list__item mdl-list__item--three-line">
+                                <span class="mdl-list__item-primary-content">
+                                    <img class="mdl-list__item-avatar" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBQZfoSOXTWVau7H6ztlvfGyeB9nQ" height="40" width="40" />
+                                <span>Rick Astley</span>
+                                    <span class="mdl-list__item-text-body">
+                                    Never gonna give you up
+                                        <div class="">Added by xyz</div>
+                                    </span>
+                                </span>
+                                <span class="mdl-list__item-secondary-content">
+                                    <div class="vv-item--playlist_item_score neutral">
+                                        65%
+                                    </div>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a>
+                                </span>
+                            </li>
+                            <li class="mdl-list__item mdl-list__item--three-line">
+                                <span class="mdl-list__item-primary-content">
+                                    <img class="mdl-list__item-avatar" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBQZfoSOXTWVau7H6ztlvfGyeB9nQ" height="40" width="40" />
+                                <span>Rick Astley</span>
+                                    <span class="mdl-list__item-text-body">
+                                    Never gonna give you up
+                                        <div class="">Added by xyz</div>
+                                    </span>
+                                </span>
+                                <span class="mdl-list__item-secondary-content">
+                                    <div class="vv-item--playlist_item_score bad">
+                                        30%
+                                    </div>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a>
+                                    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a>
                                 </span>
                             </li>
                         </ul>
