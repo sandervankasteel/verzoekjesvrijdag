@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);.vv-h3--playlist_title {
+  margin: 0;
+}
+
+.mdl-list__item {
+  padding: 0;
+}
+
+.mdl-list.demo-list-three {
+  overflow-y: auto;
+}
+
+.mdl-list .mdl-list__item-secondary-content {
+  display: inline-block;
+}
+
+.mdl-list .mdl-list__item-secondary-content a {
+  color: black;
+}
+
+.mdl-list .mdl-list__item-secondary-content .vv-item--playlist_item_score {
+  padding-bottom: 8px;
+  padding-top: 6px;
+  text-align: center;
+}
+
+.mdl-list .mdl-list__item-secondary-content .vv-item--playlist_item_score.good {
+  color: #2ab27b;
+}
+
+.mdl-list .mdl-list__item-secondary-content .vv-item--playlist_item_score.neutral {
+  color: #cbb956;
+}
+
+.mdl-list .mdl-list__item-secondary-content .vv-item--playlist_item_score.bad {
+  color: #bf5329;
+}
+
+.playlist-list_item--name {
+  font-style: italic;
+}
+
