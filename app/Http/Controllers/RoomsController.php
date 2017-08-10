@@ -15,4 +15,9 @@ class RoomsController extends Controller
         return "bla bla bla";
     }
 
+    public function getPlaylist(Room $room)
+    {
+
+    }
+
 }
