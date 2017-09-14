@@ -56,7 +56,8 @@
                                     <div class="vv-item--playlist_item_score good">
                                         100%
                                     </div>
-                                    <span class="vote-up"><a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a></span>
+                                    {{--<span class="vote-up"><a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_up</i></a></span>--}}
+                                    <example></example>
                                     <span class="vote-down"><a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">thumb_down</i></a></span>
                                 </span>
                             </li>
