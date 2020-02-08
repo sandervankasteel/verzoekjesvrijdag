@@ -13,12 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
-// 'middleware' => [''],
-// /api/v1 should use a middleware
-Route::group([ 'prefix' => 'v1'], function() {
-    Route::post('search/youtube', 'YoutubeController@search');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
 });

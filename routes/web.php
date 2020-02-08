@@ -11,9 +11,6 @@
 |
 */
 
-//Route::get('/', function () {
-//
-//});
-
-Route::get('/', 'RoomsController@index');
-Route::get('/room{room}', 'RoomsController@room');
+Route::get('/', function () {
+    return view('welcome');
+});

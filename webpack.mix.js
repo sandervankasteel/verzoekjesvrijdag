@@ -1,4 +1,5 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss')
 
 /*
  |--------------------------------------------------------------------------
@@ -11,15 +12,20 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js');
-//    .sass('resources/assets/sass/app.scss', 'public/css');
+mix.browserSync({
+    proxy: process.env.APP_URL,
+    open: false
+});
 
-// mix.js('node_modules/material-design-lite/material.min.js', 'public/js');
-//     .sass('resources/assets/sass/app.scss', 'public/css');
-//
-// 'node_modules/material-design-lite/material.min.css',
-mix.copy('node_modules/material-design-lite/dist/material.indigo-pink.min.css', 'public/css/mdl.css');
-mix.copy('node_modules/material-design-lite/material.min.js', 'public/js');
-mix.copy('node_modules/mo-js/build/mo.min.js', 'public/js');
+mix.js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .options({
+        processCssUrls: false,
+        postCss: [ tailwindcss('tailwind.config.js') ],
+    });
 
-mix.sass('resources/assets/sass/app.scss', 'public/css');
+if (mix.inProduction()) {
+    mix.version();
+    mix.disableNotifications();
+}
+
