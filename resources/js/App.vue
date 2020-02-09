@@ -1,8 +1,8 @@
 <template>
-    <div class="h-full">
-        <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
-            <Navigation></Navigation>
-        </nav>
+    <div class="w-full h-screen max-h-screen min-h-screen">
+<!--        <nav class="flex w-full items-center justify-between flex-wrap bg-teal-500 p-6">-->
+<!--            <Navigation></Navigation>-->
+<!--        </nav>-->
         <main class="h-full">
             <router-view></router-view>
         </main>

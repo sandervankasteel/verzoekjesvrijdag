@@ -10,10 +10,12 @@
         </div>
         <div class="flex mb-4">
             <div class="w-1/2">
-                <i class="far fa-thumbs-up"></i> {{ item.upvotes }}
+<!--                <font-awesome-icon :icon="['far', 'fa-thumbs-up']"/>-->
+                Upvotes: {{ item.upvotes }}
             </div>
             <div class="w-1/2">
-                <i class="far fa-thumbs-down"></i> {{ item.downvotes }}
+<!--                <font-awesome-icon :icon="['far', 'fa-thumbs-down']"/>-->
+                Downvotes: {{ item.downvotes }}
             </div>
         </div>
     </div>
@@ -22,9 +24,16 @@
 <script>
     export default {
         name: "PlaylistItem",
-        props: ["item"]
+        props: ["item"],
+        methods: {
+            handleVote: function(type) {
+                // set animation type to bounce
+                console.log('vote has been cast')
+            }
+        }
     }
 </script>
 
 <style scoped>
+
 </style>

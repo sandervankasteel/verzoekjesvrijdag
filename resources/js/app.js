@@ -15,13 +15,19 @@
 //
 import Vue from 'vue';
 import App from './App.vue';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueRouter from 'vue-router';
 import RoomSelectionIndex from './pages/RoomCreateOrJoin.vue';
 import Room from "./pages/Room";
 
+library.add(faUserSecret);
 
 const files = require.context('./', true, /\.vue$/i);
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(VueRouter);
 
