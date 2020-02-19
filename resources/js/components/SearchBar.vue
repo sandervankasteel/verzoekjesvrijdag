@@ -43,6 +43,11 @@
                 this.searchTerm = value;
                 let array = [];
 
+                // Some browser handle esc with both handler's
+                if (event.keyCode === 27) {
+                    return;
+                }
+
                 for(let i =0; i <= value.length; i++) {
                     array.push({
                         title: 'Artist name ' + i,
