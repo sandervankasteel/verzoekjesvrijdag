@@ -5,15 +5,16 @@
             <div class="w-3/4 float-right">Share button</div>
         </div>
         <div class="flex mb-4 h-10">
-            <input placeholder="SEARCHING!" class="mx-auto bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal">
+            <SearchBar></SearchBar>
         </div>
         <div class="flex mb-4 bg-blue-600 h-auto">
             <div class="w-3/4">
                 <iframe width="100%" height="100%"
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?wmode=transparent"
                         frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
+                        allowfullscreen
+                        class="z-0">
                 </iframe>
             </div>
             <div class="w-1/4">
@@ -26,9 +27,10 @@
 
 <script>
     import Playlist from "../components/Playlist";
+    import SearchBar from "../components/SearchBar";
     export default {
         name: "Room",
-        components: {Playlist},
+        components: {SearchBar, Playlist},
         computed: {
             roomName: function() {
                 return Math.random().toString(36).substring(2, 10);
