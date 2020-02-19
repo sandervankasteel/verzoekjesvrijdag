@@ -15,7 +15,7 @@
                     </div>
                     <div class="flex-row w-4/6">
                         <div class="h-8">{{ item.title }}</div>
-                        <div class="h-8"> {{ item.song_name }}</div>
+                        <div class="h-8">{{ item.song_name }}</div>
                     </div>
                     <div class="flex-col">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" v-on:click="onCancelClick">
