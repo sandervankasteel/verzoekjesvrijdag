@@ -4,12 +4,25 @@
             placeholder="SEARCHING!"
             class="mx-auto bg-white focus:outline-none focus:shadow-outline border border-gray-300 w-full py-2 px-4 block appearance-none leading-normal"
             v-on:keypress="onKeyPress"
+            v-on:keyup.esc="onCancelClick"
+            v-bind:value="searchTerm"
         >
         <div v-if="foundItems.length > 0" class="w-full mb-4 z-40 bg-gray-300">
-            <div v-for="(item, index) of foundItems" class="flex p-4">
-                <img :src="item.image_url" alt="preview image" class="h-16 w-16 rounded-lg mr-2"/>
-                <div class="w-full h-8">{{ item.title }}</div>
-                <div class="w-full h-8"> {{ item.song_name }}</div>
+            <div v-for="(item, index) of foundItems" class="p-4">
+                <div class="flex">
+                    <div class="flex-col">
+                        <img :src="item.image_url" alt="preview image" class="h-16 w-16 rounded-lg mr-2"/>
+                    </div>
+                    <div class="flex-row w-4/6">
+                        <div class="h-8">{{ item.title }}</div>
+                        <div class="h-8"> {{ item.song_name }}</div>
+                    </div>
+                    <div class="flex-col">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" v-on:click="onCancelClick">
+                            Add to playlist
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -20,12 +33,14 @@
         name: "SearchBar",
         data() {
             return {
-                foundItems: []
+                foundItems: [],
+                searchTerm: ""
             }
         },
         methods: {
             onKeyPress: function(event) {
                 let value = event.target.value;
+                this.searchTerm = value;
                 let array = [];
 
                 for(let i =0; i <= value.length; i++) {
@@ -40,6 +55,7 @@
             },
             onCancelClick: function(event) {
                 this.foundItems = [];
+                this.searchTerm = "";
             }
         }
     }
