@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install npm dependencies
-        run: npm run install
+        run: npm install
 
       - name: Build JS and CSS assets
         run: npm run dev
