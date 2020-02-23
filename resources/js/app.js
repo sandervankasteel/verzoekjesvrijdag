@@ -15,37 +15,21 @@
 //
 import Vue from 'vue';
 import App from './App.vue';
+import routes from './routes';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 import VueRouter from 'vue-router';
-import RoomSelectionIndex from './pages/RoomCreateOrJoin.vue';
-import Room from "./pages/Room";
 
 library.add(fas);
+
+Vue.use(VueRouter);
+const router = new VueRouter(routes);
 
 const files = require.context('./', true, /\.vue$/i);
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-    routes: [
-        {
-            path: '/',
-            name: 'home',
-            component: RoomSelectionIndex
-        },
-        {
-            path: '/room/:id',
-            name: 'room',
-            component: Room
-        }
-    ]
-});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
