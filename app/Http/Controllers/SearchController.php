@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\SearchRequest;
+use App\Http\Resources\SearchResults;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function index(SearchRequest $request)
     {
-        $term = $request->get('q', '');
+        $term = $request->input('q', '');
 
-        $results = [];
+        $searchParams = [
+            'q' => $term,
+            'type' => 'video',
+            'part' => 'id, snippet',
+            'maxResults' => 5
+        ];
 
-        for($i = 0; $i <= 5; $i++) {
-            $result = new \stdClass();
-            $result ->title = "$term - $i";
-            $result ->id = '4H_Hc3bspXc';
-            $result ->image_url = 'https://i.ytimg.com/vi/4H_Hc3bspXc/maxresdefault.jpg';
+        $results = \Youtube::searchAdvanced($searchParams);
 
-            $results[] = $result;
-        }
-
-        return response()->json($results);
+        return SearchResults::collection($results);
     }
 }
