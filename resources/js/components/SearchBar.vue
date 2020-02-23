@@ -1,13 +1,17 @@
 <template>
     <div class="w-full z-40">
+        <div v-bind:class="{ loading:loading }">
         <input
             placeholder="SEARCHING!"
             class="mx-auto bg-white focus:outline-none focus:shadow-outline border border-gray-300 w-full py-2 px-4 block appearance-none leading-normal"
             v-on:keypress="onKeyPress"
             v-on:keyup.esc="onCancelClick"
-            v-bind:value="searchTerm"
-        >
-        <div v-if="foundItems.length > 0" class="w-full mb-4 z-40 bg-gray-300">
+            v-bind:value="searchTerm" />
+        <font-awesome-icon icon="spinner" pulse class="mr-2 ml-2" v-bind:class="{ hidden: !loading }"/>
+
+        </div>
+
+        <div v-if="foundItems.length > 0" class="w-11/12 mb-4 z-40 bg-gray-300 rounded-b-lg shadow-xl">
             <div v-for="(item, index) of foundItems" class="p-4">
                 <div class="flex">
                     <div class="flex-col">
@@ -15,7 +19,6 @@
                     </div>
                     <div class="flex-row w-4/6">
                         <div class="h-8">{{ item.title }}</div>
-<!--                        <div class="h-8">{{ item.song_name }}</div>-->
                     </div>
                     <div class="flex-col">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" v-on:click="onCancelClick">
@@ -29,17 +32,21 @@
 </template>
 
 <script>
+    import { debounce } from "lodash";
+
     export default {
         name: "SearchBar",
         data() {
             return {
                 foundItems: [],
-                searchTerm: ""
+                searchTerm: "",
+                loading: false,
             }
         },
         methods: {
-            onKeyPress: async function (event) {
+            onKeyPress: debounce(async function (event) {
                 const axios = require('axios');
+                this.loading = true;
 
                 let value = event.target.value;
                 this.searchTerm = value;
@@ -51,18 +58,10 @@
                 }
 
                 const response = await axios.get(`/api/v1/search?q=${value}`);
-                this.foundItems = response.data;
+                this.foundItems = response.data.data;
 
-                // for(let i =0; i <= value.length; i++) {
-                //     array.push({
-                //         title: 'Artist name ' + i,
-                //         song_name: 'Song name ' + i,
-                //         image_url: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/sddefault.jpg'
-                //     })
-                // }
-                //
-                // this.foundItems = array;
-            },
+                this.loading = false;
+            }, 500),
             onCancelClick: function(event) {
                 this.foundItems = [];
                 this.searchTerm = "";
@@ -72,5 +71,15 @@
 </script>
 
 <style scoped>
+    .loading input {
+        padding-left: 40px;
+        transition: padding-left 0.25s;
+    }
 
+    .loading svg {
+        position: absolute;
+        top: 3.9em;
+        left: 0.5em;
+        transition: display 0.5s;
+    }
 </style>
