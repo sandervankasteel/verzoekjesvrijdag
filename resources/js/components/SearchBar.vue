@@ -21,7 +21,7 @@
                         <div class="h-8">{{ item.title }}</div>
                     </div>
                     <div class="flex-col">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" v-on:click="onCancelClick">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" v-on:click="handleAddToPlaylist(item)">
                             Add to playlist
                         </button>
                     </div>
@@ -33,6 +33,7 @@
 
 <script>
     import { debounce } from "lodash";
+    import { mapActions } from 'vuex'
 
     export default {
         name: "SearchBar",
@@ -44,6 +45,7 @@
             }
         },
         methods: {
+            ...mapActions('playlist', ['addToPlaylist']),
             onKeyPress: debounce(async function (event) {
                 const axios = require('axios');
                 this.loading = true;
@@ -65,6 +67,10 @@
             onCancelClick: function(event) {
                 this.foundItems = [];
                 this.searchTerm = "";
+            },
+            handleAddToPlaylist: function(item) {
+                this.addToPlaylist({ ... item });
+                this.onCancelClick();
             }
         }
     }
