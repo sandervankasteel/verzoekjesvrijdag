@@ -28,14 +28,14 @@
 <script>
     import Playlist from "../components/Playlist";
     import SearchBar from "../components/SearchBar";
+    import { mapState } from "vuex";
+
     export default {
         name: "Room",
         components: {SearchBar, Playlist},
-        computed: {
-            roomName: function() {
-                return Math.random().toString(36).substring(2, 10);
-            }
-        }
+        computed: mapState({
+            roomName: state => state.room.id
+        })
     }
 </script>
 
