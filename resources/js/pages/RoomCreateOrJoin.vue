@@ -12,7 +12,7 @@
         </div>
         <div class="flex justify-center w-full" v-bind:class="{ 'animated fadeInUp': showRoomDetails}">
             <div class="text-teal-600" v-show="showRoomDetails">
-                <input placeholder="Your name" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 w-2/5 appearance-none leading-normal">
+                <input v-model="username" placeholder="Your name" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 w-2/5 appearance-none leading-normal" >
                 <button v-on:click="handleButtonClick('join')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-12 rounded">
                     Continue
                 </button>
@@ -22,24 +22,39 @@
 </template>
 
 <script>
+    import { mapActions, mapState } from "vuex";
+
     export default {
         name: "RoomCreateOrJoin",
         data() {
             return {
+                username: '',
                 showRoomDetails: false,
             }
         },
+        computed: mapState({
+            roomName: state => state.room.id
+        }),
         methods: {
+            ...mapActions('room', ['setRoom', 'addMember']),
+            createNewRoom: async function() {
+                const axios = require('axios');
+
+                const data = await axios.get('/api/v1/rooms/create');
+                this.setRoom(data.data.data.name);
+            },
             handleButtonClick: function(type) {
+                this.showRoomDetails = true;
+
                 switch (type) {
                     case 'join_existing':
-                        this.showRoomDetails = true;
                         break;
                     case 'create':
-                        this.showRoomDetails = true;
+                        this.createNewRoom();
                         break;
                     case 'join':
-                        this.$router.push({ name: 'room', params: {id: 'abcd1234'} });
+                        this.addMember(this.username);
+                        this.$router.push({ name: 'room', params: {id: this.roomName} });
                         break;
                     default:
                         alert(`Unsupported ${type}`);
