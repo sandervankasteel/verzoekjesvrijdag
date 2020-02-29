@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\RoomController;
+use \App\Http\Controllers\RoomController;
 use Illuminate\Http\Request;
 
 /*
@@ -19,6 +19,11 @@ use Illuminate\Http\Request;
 //});
 
 Route::prefix('v1')->group(static function() {
+    Route::post('authorize', 'UserController@create');
+
     Route::get('/search', 'SearchController@index');
-    Route::resource('rooms', RoomController::class);
+
+    Route::resource('rooms', 'RoomController');
+    Route::patch('room/join/{room}', 'RoomController@joinRoom');
+    Route::post('rooms/join', 'RoomController@join');
 });
