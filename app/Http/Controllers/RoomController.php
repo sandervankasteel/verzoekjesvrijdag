@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserJoinedRoom;
 use App\Http\Resources\Room as RoomResource;
 use App\Models\Room;
+use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
 class RoomController extends Controller
@@ -12,7 +15,7 @@ class RoomController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -30,14 +33,17 @@ class RoomController extends Controller
             'name' => Str::random(10)
         ]);
 
+        $user = Auth::getUser();
+        $room->users()->attach($user);
+
         return new RoomResource($room);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -47,8 +53,8 @@ class RoomController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
+     * @param Room $room
+     * @return void
      */
     public function show(Room $room)
     {
@@ -58,8 +64,8 @@ class RoomController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
+     * @param Room $room
+     * @return void
      */
     public function edit(Room $room)
     {
@@ -69,9 +75,9 @@ class RoomController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Room $room
+     * @return void
      */
     public function update(Request $request, Room $room)
     {
@@ -81,11 +87,21 @@ class RoomController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
+     * @param Room $room
+     * @return void
      */
     public function destroy(Room $room)
     {
         //
+    }
+
+    public function joinRoom(Request $request, Room $room)
+    {
+        $user = Auth::getUser();
+        $room->users()->attach($user);
+
+        broadcast(new UserJoinedRoom($user, $room));
+
+        return response()->json('', 200);
     }
 }
