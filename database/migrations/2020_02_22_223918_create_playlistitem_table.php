@@ -13,9 +13,13 @@ class CreatePlaylistitemTable extends Migration
      */
     public function up()
     {
-        Schema::create('playlistitem', function (Blueprint $table) {
+        Schema::create('playlistitems', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('room_id');
+            $table->string('youtube_id', 255);
+
             $table->timestamps();
+            $table->foreign('room_id')->references('id')->on('rooms');
         });
     }
 
