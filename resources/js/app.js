@@ -38,6 +38,18 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Echo from 'laravel-echo';
+
+window.Pusher = require('pusher-js');
+window.Pusher.logToConsole = true;
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: true
+});
+
 const app = new Vue({
     el: '#app',
     store,
