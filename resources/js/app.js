@@ -21,10 +21,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueRouter from 'vue-router';
+import VueYoutube from 'vue-youtube'
 
 library.add(fas);
 
 Vue.use(VueRouter);
+Vue.use(VueYoutube);
+
 const router = new VueRouter(routes);
 
 const files = require.context('./', true, /\.vue$/i);
@@ -47,7 +50,12 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    encrypted: true
+    encrypted: true,
+        auth: {
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('[name="csrf-token"]').content,
+        },
+    },
 });
 
 const app = new Vue({
