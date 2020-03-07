@@ -7,9 +7,10 @@
         <div class="flex mb-4 h-10">
             <SearchBar></SearchBar>
         </div>
-        <div class="flex mb-4 bg-blue-600 h-auto">
+        <div class="flex mb-4 bg-blue-600 h-full">
             <div class="w-3/4">
-                <iframe width="100%" height="100%"
+                <iframe width="100%"
+                        height="100%"
                         src="https://www.youtube.com/embed/dQw4w9WgXcQ?wmode=transparent"
                         frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
