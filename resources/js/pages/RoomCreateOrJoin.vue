@@ -59,7 +59,7 @@
                 const axios = require('axios');
 
                 const resp = await axios.get('/api/v1/rooms/create');
-                this.setRoom(resp.data.data.name);
+                await this.setRoom(resp.data.data.name);
             },
             createNewuser: async function() {
                 const axios = require('axios');
@@ -68,31 +68,27 @@
                     name: this.username
                 });
             },
-            handleButtonClick: function(type) {
+            handleButtonClick: async function (type) {
                 this.showRoomDetails = true;
 
                 switch (type) {
                     case 'join_existing':
                         this.joinExistingRoom = true;
                         break;
-                    case 'create':
-                        this.createNewuser();
-                        this.createNewRoom();
-
-                        break;
                     case 'join':
                         this.loading = true;
 
-                        if(this.toJoinRoomName) {
-                            this.createNewuser();
-                            this.setRoom(this.toJoinRoomName);
+                        if (this.joinExistingRoom) {
+                            await this.createNewuser();
+                            await this.setRoom(this.toJoinRoomName);
+                        } else {
+                            await this.createNewuser();
+                            await this.createNewRoom();
                         }
 
                         this.addMember(this.username);
-                        this.$router.push({ name: 'room', params: {id: this.roomName} });
-                        break;
-                    default:
-                        alert(`Unsupported ${type}`);
+                        this.$router.push({name: 'room', params: {id: this.roomName}});
+                    break;
                 }
             }
         },
