@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Room;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,7 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'email',
+        'email_verified_at',
         'name',
+        'password',
     ];
 
     /**
@@ -25,7 +27,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -36,6 +41,6 @@ class User extends Authenticatable
 
     public function room()
     {
-        return $this->belongsTo(Room::class);
+        return $this->hasOne(Room::class);
     }
 }
