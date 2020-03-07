@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const state = {
     items: [{
         id: 'dQw4w9WgXcQ',
@@ -13,19 +15,23 @@ const getters = {};
 
 // actions
 const actions = {
-    addToPlaylist({ state, commit }, item) {
-        commit('pushToPlaylist', { item });
+    addToPlaylist({ state, commit, rootState }, item) {
+        console.log(rootState);
+        const roomName = rootState.room.id;
+        commit('pushToPlaylist', { item, roomName});
     }
 };
 
 const mutations = {
-    pushToPlaylist( state, { item }) {
+    pushToPlaylist( state, { item, roomName}) {
 
         state.items.push({
             downvotes: 0,
             upvotes: 0,
             ...item
         });
+
+        axios.post(`/api/v1/rooms/${roomName}/add_to_playlist`, { item: item });
     }
 };
 

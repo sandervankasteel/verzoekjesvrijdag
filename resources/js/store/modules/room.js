@@ -1,5 +1,6 @@
 import Echo from "laravel-echo";
 
+
 const state = {
     id: '',
     members: [],
@@ -8,13 +9,20 @@ const state = {
 const getters = {};
 
 const actions = {
-    setRoom({ state, commit }, roomId) {
+    async setRoom({state, commit}, roomId) {
+        const axios = require('axios');
+
+        await axios.patch(`/api/v1/room/join/${roomId}`);
+        console.log(`room.${roomId}`);
+
+        window.Echo.join(`room.${roomId}`)
+            .listen('UserJoinedRoom', (e) => {
+                console.log('Echo reply: ', e);
+            });
+
         commit('setRoomId', roomId);
-
-        window.Echo.channel(roomId).listen('users', function(data) {
-            console.log('Echo reply: ', data);
-        });
-
+        //     .then(() => {
+        // });
     },
     addMember({ state, commit}, name) {
         commit('appendMember', name)
@@ -28,6 +36,7 @@ const actions = {
 
 const mutations = {
     setRoomId(state, id) {
+        console.log('setRoomId id: ', id);
         state.id = id;
     },
     appendMember(state, name) {
