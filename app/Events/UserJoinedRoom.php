@@ -12,7 +12,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserJoinedRoom
+class UserJoinedRoom implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -40,6 +40,7 @@ class UserJoinedRoom
      */
     public function broadcastOn()
     {
-        return new PrivateChannel($this->room->name);
+        $roomName = $this->room->name;
+        return new PresenceChannel('room.' . $roomName);
     }
 }
