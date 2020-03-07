@@ -11,6 +11,15 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+use App\Models\Room;
+
+//Broadcast::channel('App.User.{id}', static function ($user, $id) {
+//    return true;
+////    return (int) $user->id === (int) $id;
+//});
+
+Broadcast::channel('room.{roomName}', static function ($user, $roomName) {
+    $room = Room::where('name', $roomName)->first();
+    Log::info("Authorization asked for $room->name");
+    return ['id' => $user->id];
 });
