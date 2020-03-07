@@ -95,13 +95,21 @@ class RoomController extends Controller
         //
     }
 
-    public function joinRoom(Request $request, Room $room)
+    public function joinRoom(Request $request, $room)
     {
         $user = Auth::getUser();
+        $room = Room::where('name', $room)->first();
         $room->users()->attach($user);
 
         broadcast(new UserJoinedRoom($user, $room));
+//            ->toOthers();
 
         return response()->json('', 200);
+    }
+
+    public function addToPlaylist(Request $request, Room $room)
+    {
+
+        return 404;
     }
 }
