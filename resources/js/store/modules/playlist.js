@@ -31,7 +31,7 @@ const mutations = {
             ...item
         });
 
-        axios.post(`/api/v1/rooms/${roomName}/add_to_playlist`, { item: item });
+        axios.post(`/api/v1/rooms/${roomName}/add_to_playlist`, item);
     }
 };
 

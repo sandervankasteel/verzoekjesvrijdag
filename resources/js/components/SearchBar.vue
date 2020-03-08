@@ -69,7 +69,7 @@
                 this.searchTerm = "";
             },
             handleAddToPlaylist: function(item) {
-                this.addToPlaylist({ ... item });
+                this.addToPlaylist(item);
                 this.onCancelClick();
             }
         }
