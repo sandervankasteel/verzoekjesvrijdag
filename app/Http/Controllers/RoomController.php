@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserJoinedRoom;
+use App\Http\Requests\AddPlaylistItem;
 use App\Http\Resources\Room as RoomResource;
 use App\Models\Room;
 use Auth;
@@ -32,9 +33,6 @@ class RoomController extends Controller
         $room = Room::create([
             'name' => Str::random(10)
         ]);
-
-        $user = Auth::getUser();
-        $room->users()->attach($user);
 
         return new RoomResource($room);
     }
@@ -102,14 +100,15 @@ class RoomController extends Controller
         $room->users()->attach($user);
 
         broadcast(new UserJoinedRoom($user, $room));
-//            ->toOthers();
 
         return response()->json('', 200);
     }
 
-    public function addToPlaylist(Request $request, Room $room)
+    public function addToPlaylist(AddPlaylistItem $request, $roomName)
     {
+        $room = Room::where('name', $roomName)->first();
+        dd($request->input());
 
-        return 404;
+//        return 404;
     }
 }
