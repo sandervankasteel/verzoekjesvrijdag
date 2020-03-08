@@ -8,7 +8,7 @@ const state = {
 
 const getters = {
     hasJoinedRoom: (state) => {
-        console.log(this);
+        // return !!state.id;
         return true;
     }
 };
@@ -18,11 +18,9 @@ const actions = {
         const axios = require('axios');
 
         await axios.patch(`/api/v1/room/join/${roomId}`);
-        console.log(`room.${roomId}`);
-
         window.Echo.join(`room.${roomId}`)
             .listen('UserJoinedRoom', (e) => {
-                console.log('Echo reply: ', e);
+                commit('appendMember', e.user.name);
             });
 
         commit('setRoomId', roomId);
