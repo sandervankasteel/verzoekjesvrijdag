@@ -13,4 +13,8 @@
     <body>
     <div id="app"></div>
     </body>
+    <script>
+        var user = {!! json_encode(\Auth::user())  !!};
+            console.log('current user: ', user);
+    </script>
 </html>
