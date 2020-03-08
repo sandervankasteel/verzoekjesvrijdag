@@ -13,6 +13,11 @@ class UserController extends Controller
     public function create(Request $request): UserResponse
     {
         $name = $request->get('name');
+
+        if(\Auth::getUser() !== null) {
+            return new UserResponse(\Auth::getUser());
+        }
+
         $user = User::create([
             'name' => $name,
             'email' => 'somebullshit@gmail.com',
@@ -21,7 +26,6 @@ class UserController extends Controller
         ]);
 
         \Auth::login($user, true);
-
         return new UserResponse($user);
     }
 }
