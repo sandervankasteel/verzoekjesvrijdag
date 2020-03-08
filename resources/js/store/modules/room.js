@@ -6,7 +6,12 @@ const state = {
     members: [],
 };
 
-const getters = {};
+const getters = {
+    hasJoinedRoom: (state) => {
+        console.log(this);
+        return true;
+    }
+};
 
 const actions = {
     async setRoom({state, commit}, roomId) {
@@ -36,7 +41,6 @@ const actions = {
 
 const mutations = {
     setRoomId(state, id) {
-        console.log('setRoomId id: ', id);
         state.id = id;
     },
     appendMember(state, name) {
