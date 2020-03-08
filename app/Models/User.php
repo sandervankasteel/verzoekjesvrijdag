@@ -39,8 +39,8 @@ class User extends Authenticatable
      */
     protected $casts = [];
 
-    public function room()
+    public function rooms()
     {
-        return $this->hasOne(Room::class);
+        return $this->belongsToMany(Room::class);
     }
 }
