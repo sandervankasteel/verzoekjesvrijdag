@@ -13,9 +13,23 @@
 
     export default {
         name: "Playlist",
+        created () {
+            this.subscribe()
+        },
         computed: mapState({
-            items: state => state.playlist.items
-        })
+            items: state => state.playlist.items,
+            roomName: state => state.room.id
+        }),
+        methods: {
+            subscribe () {
+                Echo.private(`room.${this.roomName}.items`)
+                .listen('ItemAddedToPlaylist', (e) => {
+                    console.log(e);
+
+                    // actions.addToPlaylist()
+                });
+            }
+        }
     }
 </script>
 
