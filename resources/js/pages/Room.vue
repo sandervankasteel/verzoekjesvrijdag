@@ -36,7 +36,18 @@
         components: {SearchBar, Playlist},
         computed: mapState({
             roomName: state => state.room.id
-        })
+        }),
+        created () {
+            this.subscribe()
+        },
+        methods: {
+            subscribe() {
+                Echo.join(`room.${this.roomName}`)
+                    .listen('UserJoinedRoom', (e) => {
+                        this.$store.dispatch('appendMember', e.user.name);
+                    });
+            }
+        }
     }
 </script>
 
