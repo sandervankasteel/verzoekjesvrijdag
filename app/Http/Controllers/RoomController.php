@@ -104,10 +104,11 @@ class RoomController extends Controller
         return response()->json('', 200);
     }
 
-    public function addToPlaylist(AddPlaylistItem $request, $roomName)
+    public function addToPlaylist(AddPlaylistItem $request, Room $room)
     {
-        $room = Room::where('name', $roomName)->first();
         dd($request->input());
+
+
 
 //        return 404;
     }
