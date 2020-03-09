@@ -1,6 +1,3 @@
-import Echo from "laravel-echo";
-
-
 const state = {
     id: '',
     members: [],
@@ -18,10 +15,6 @@ const actions = {
         const axios = require('axios');
 
         await axios.patch(`/api/v1/room/join/${roomId}`);
-        window.Echo.join(`room.${roomId}`)
-            .listen('UserJoinedRoom', (e) => {
-                commit('appendMember', e.user.name);
-            });
 
         commit('setRoomId', roomId);
         //     .then(() => {
