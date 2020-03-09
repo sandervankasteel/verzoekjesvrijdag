@@ -16,7 +16,6 @@ const getters = {};
 // actions
 const actions = {
     addToPlaylist({ state, commit, rootState }, item) {
-        console.log(rootState);
         const roomName = rootState.room.id;
         commit('pushToPlaylist', { item, roomName});
     }
