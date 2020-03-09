@@ -27,5 +27,5 @@ Route::prefix('v1')->group(static function() {
     Route::patch('room/join/{room}', 'RoomController@joinRoom');
     Route::post('rooms/join', 'RoomController@join');
 
-    Route::post('rooms/{room}/add_to_playlist', 'RoomController@addToPlaylist');
+    Route::post('rooms/{room:name}/add_to_playlist', 'RoomController@addToPlaylist');
 });
