@@ -23,3 +23,8 @@ Broadcast::channel('room.{roomName}', static function ($user, $roomName) {
     Log::info("Authorization asked for $room->name");
     return ['id' => $user->id];
 });
+
+Broadcast::channel('room.{roomName}.items', static function ($user, $roomName) {
+    // $room = Room::where('name', $roomName)->first();
+    return true;
+});
