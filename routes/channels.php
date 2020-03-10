@@ -13,18 +13,11 @@
 
 use App\Models\Room;
 
-//Broadcast::channel('App.User.{id}', static function ($user, $id) {
-//    return true;
-////    return (int) $user->id === (int) $id;
-//});
-
 Broadcast::channel('room.{roomName}', static function ($user, $roomName) {
     $room = Room::where('name', $roomName)->first();
-    Log::info("Authorization asked for $room->name");
     return ['id' => $user->id];
 });
 
-Broadcast::channel('room.{roomName}.items', static function ($user, $roomName) {
-    // $room = Room::where('name', $roomName)->first();
+Broadcast::channel('room.items.{room}', static function ($user, $room) {
     return true;
 });
