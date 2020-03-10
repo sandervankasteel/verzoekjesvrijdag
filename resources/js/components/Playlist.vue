@@ -22,9 +22,9 @@
         }),
         methods: {
             subscribe () {
-                Echo.private(`room.${this.roomName}.items`)
+                Echo.private(`room.items.${this.roomName}`)
                 .listen('ItemAddedToPlaylist', (e) => {
-                    console.log(e);
+                    console.log('ItemAddedToPlaylist: ', e);
 
                     // actions.addToPlaylist()
                 });

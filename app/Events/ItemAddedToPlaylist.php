@@ -40,6 +40,6 @@ class ItemAddedToPlaylist implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('room' . $this->room->name . 'items');
+        return new PrivateChannel('room.items.' . $this->room->name);
     }
 }
