@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ItemAddedToPlaylist;
 use App\Events\UserJoinedRoom;
 use App\Http\Requests\AddPlaylistItem;
 use App\Http\Resources\Room as RoomResource;
+use App\Models\PlaylistItem;
 use App\Models\Room;
 use Auth;
 use Illuminate\Http\Request;
@@ -106,10 +108,13 @@ class RoomController extends Controller
 
     public function addToPlaylist(AddPlaylistItem $request, Room $room)
     {
-        dd($request->input());
+        $item = PlaylistItem::create([
+            'youtube_id' => $request->get('id'),
+            'room_id' => $room->id
+        ]);
 
+        broadcast(new ItemAddedToPlaylist($room, $item))->toOthers();
 
-
-//        return 404;
+        return response()->json('', 200);
     }
 }
