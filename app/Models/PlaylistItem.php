@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PlaylistItem extends Model
 {
+    protected $table = 'playlistitems';
 
     protected $fillable = [
         'room_id',
