@@ -14,7 +14,7 @@ class AddPlaylistItem extends FormRequest
      */
     public function authorize()
     {
-        $room = Room::where('name', $this->route('room'))->first();
+        $room = $this->route('room');
         $user = \Auth::getUser();
 
         return $user !== null && $user->rooms->whereIn('id', [$room->id])->isNotEmpty();
