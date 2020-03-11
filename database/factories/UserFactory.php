@@ -19,5 +19,6 @@ use Faker\Generator as Faker;
 $factory->define(User::class, static function (Faker $faker) {
     return [
         'name' => $faker->firstName,
+        'password' => \Hash::make($faker->word),
     ];
 });
