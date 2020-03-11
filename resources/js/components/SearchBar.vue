@@ -69,7 +69,6 @@
                 this.searchTerm = "";
             },
             handleAddToPlaylist: function(item) {
-                console.log(item);
                 this.addToPlaylist(item);
                 this.onCancelClick();
             }
