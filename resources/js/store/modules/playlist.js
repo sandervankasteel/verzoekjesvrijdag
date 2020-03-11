@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const state = {
     items: [{
-        id: 'dQw4w9WgXcQ',
+        youtube_id: 'dQw4w9WgXcQ',
         image_url: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/sddefault.jpg',
         title: 'Rick Astley - Never Gonna Give You Up',
         upvotes: 10,
@@ -17,20 +17,24 @@ const getters = {};
 const actions = {
     addToPlaylist({ state, commit, rootState }, item) {
         const roomName = rootState.room.id;
-        commit('pushToPlaylist', { item, roomName});
+        commit('pushToPlaylist', { item, roomName });
     }
 };
 
 const mutations = {
-    pushToPlaylist( state, { item, roomName}) {
+    pushToPlaylist( state, { item, roomName }) {
 
-        state.items.push({
-            downvotes: 0,
-            upvotes: 0,
-            ...item
-        });
+        console.log('pushToPlaylist item:' , item);
 
-        axios.post(`/api/v1/rooms/${roomName}/add_to_playlist`, item);
+        if(state.items[state.items.length -1].youtube_id !== item.youtube_id) {
+            state.items.push({
+                downvotes: 0,
+                upvotes: 0,
+                ...item
+            });
+
+            axios.post(`/api/v1/rooms/${roomName}/add_to_playlist`, item);
+        }
     }
 };
 
