@@ -15,7 +15,7 @@ class SearchResults extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id->videoId,
+            'youtube_id' => $this->id->videoId,
             'title' => $this->snippet->title,
             'image_url' => $this->snippet->thumbnails->default->url
         ];
