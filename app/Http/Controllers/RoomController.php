@@ -109,8 +109,10 @@ class RoomController extends Controller
     public function addToPlaylist(AddPlaylistItem $request, Room $room)
     {
         $item = PlaylistItem::create([
-            'youtube_id' => $request->get('id'),
-            'room_id' => $room->id
+            'youtube_id' => $request->get('youtube_id'),
+            'room_id' => $room->id,
+            'title' => $request->get('title'),
+            'image_url' => $request->get('image_url')
         ]);
 
         broadcast(new ItemAddedToPlaylist($room, $item))->toOthers();
