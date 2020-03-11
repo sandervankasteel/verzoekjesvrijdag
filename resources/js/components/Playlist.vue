@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import {mapActions, mapState} from 'vuex';
 
     export default {
         name: "Playlist",
@@ -21,12 +21,11 @@
             roomName: state => state.room.id
         }),
         methods: {
+            ...mapActions('playlist', ['addToPlaylist']),
             subscribe () {
                 Echo.private(`room.items.${this.roomName}`)
                 .listen('ItemAddedToPlaylist', (e) => {
-                    console.log('ItemAddedToPlaylist: ', e);
-
-                    // actions.addToPlaylist()
+                    this.addToPlaylist(e.item);
                 });
             }
         }
