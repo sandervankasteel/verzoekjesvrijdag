@@ -29,7 +29,7 @@
 <script>
     import Playlist from "../components/Playlist";
     import SearchBar from "../components/SearchBar";
-    import { mapState } from "vuex";
+    import {mapActions, mapState} from "vuex";
 
     export default {
         name: "Room",
@@ -41,10 +41,11 @@
             this.subscribe()
         },
         methods: {
+            ...mapActions('room', ['addMember', 'addMembers']),
             subscribe() {
                 Echo.join(`room.${this.roomName}`)
                     .listen('UserJoinedRoom', (e) => {
-                        this.$store.dispatch('appendMember', e.user.name);
+                        this.addMember(e.user.name);
                     });
             }
         }
