@@ -11,6 +11,10 @@ class PlaylistItem extends Model
     protected $fillable = [
         'room_id',
         'youtube_id',
+        'image_url',
+        'title',
+//        'upvotes',
+//        'downvotes',
     ];
 
     public function room()
