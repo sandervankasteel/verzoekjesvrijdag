@@ -17,8 +17,6 @@ const actions = {
         await axios.patch(`/api/v1/room/join/${roomId}`);
 
         commit('setRoomId', roomId);
-        //     .then(() => {
-        // });
     },
     addMember({ state, commit}, name) {
         commit('appendMember', name)
