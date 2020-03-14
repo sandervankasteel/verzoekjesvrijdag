@@ -24,13 +24,13 @@ class ItemAddedToPlaylist implements ShouldBroadcast
 
     private $room;
 
-    public $item;
+    public $playlistItem;
 
     public function __construct(Room $room, PlaylistItem $item)
     {
         $this->room = $room;
 
-        $this->item = $item;
+        $this->playlistItem = $item;
     }
 
     /**
@@ -40,6 +40,6 @@ class ItemAddedToPlaylist implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('room.items.' . $this->room->name);
+        return new PresenceChannel('room.items.' . $this->room->name);
     }
 }
