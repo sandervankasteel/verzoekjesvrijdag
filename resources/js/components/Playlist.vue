@@ -23,9 +23,10 @@
         methods: {
             ...mapActions('playlist', ['addToPlaylist']),
             subscribe () {
-                Echo.private(`room.items.${this.roomName}`)
+                Echo.join(`room.items.${this.roomName}`)
                 .listen('ItemAddedToPlaylist', (e) => {
-                    this.addToPlaylist(e.item);
+                    e.playlistItem.pushToBackend = false;
+                    this.addToPlaylist(e.playlistItem);
                 });
             }
         }
