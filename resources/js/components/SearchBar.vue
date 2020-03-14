@@ -69,7 +69,9 @@
                 this.searchTerm = "";
             },
             handleAddToPlaylist: function(item) {
+                item.pushToBackend = true;
                 this.addToPlaylist(item);
+
                 this.onCancelClick();
             }
         }
