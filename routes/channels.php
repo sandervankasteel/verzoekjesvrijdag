@@ -15,9 +15,10 @@ use App\Models\Room;
 
 Broadcast::channel('room.{roomName}', static function ($user, $roomName) {
     $room = Room::where('name', $roomName)->first();
-    return ['id' => $user->id];
+
+    return [ 'id' => $user->id ];
 });
 
 Broadcast::channel('room.items.{room}', static function ($user, $room) {
-    return true;
+    return [ 'id' => $user->id ];
 });
