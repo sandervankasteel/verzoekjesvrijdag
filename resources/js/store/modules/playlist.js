@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = window.axios;
 
 const state = {
     items: [{
@@ -23,18 +23,17 @@ const actions = {
 
 const mutations = {
     pushToPlaylist( state, { item, roomName }) {
+        if(item.pushToBackend) {
+            axios.post(`/api/v1/rooms/${roomName}/add_to_playlist`, item);
+        }
 
-        console.log('pushToPlaylist item:' , item);
-
-        if(state.items[state.items.length -1].youtube_id !== item.youtube_id) {
+        // if(state.items[state.items.length -1].youtube_id !== item.youtube_id) {
             state.items.push({
                 downvotes: 0,
                 upvotes: 0,
                 ...item
             });
-
-            axios.post(`/api/v1/rooms/${roomName}/add_to_playlist`, item);
-        }
+        // }
     }
 };
 
