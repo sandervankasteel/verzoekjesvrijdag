@@ -23,7 +23,7 @@
                 </div>
                 <div class="w-full flex justify-center my-4" v-show="showRoomDetails">
                     <div class="text-teal-600">
-                        <input v-model="username" placeholder="Your name" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 appearance-none leading-normal" >
+                        <input v-bind:disabled="username !== ''" v-model="username" placeholder="Your name" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 appearance-none leading-normal" >
                     </div>
                 </div>
                 <div class="w-full flex justify-center my-4">
@@ -43,16 +43,19 @@
         name: "RoomCreateOrJoin",
         data() {
             return {
-                username: '',
+                // username: '',
                 joinExistingRoom: false,
                 toJoinRoomName: '',
                 showRoomDetails: false,
                 loading: false
             }
         },
-        computed: mapState({
-            roomName: state => state.room.id
-        }),
+        computed: {
+            username: () => (window.user && window.user.name) ? window.user.name : '',
+            ...mapState({
+                 roomName: state => state.room.id
+            }),
+        },
         methods: {
             ...mapActions('room', ['setRoom', 'addMember']),
             createNewRoom: async function() {
