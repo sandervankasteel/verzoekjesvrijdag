@@ -5,8 +5,12 @@ const state = {
 
 const getters = {
     hasJoinedRoom: (state) => {
+        // console.log('room hasJoinedRoom getters state: ', state);
         // return !!state.id;
         return true;
+    },
+    getMembers: (state) => {
+        return state.members;
     }
 };
 

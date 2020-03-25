@@ -15,6 +15,8 @@
     </body>
     <script>
         var user = {!! json_encode(\Auth::user())  !!};
-            console.log('current user: ', user);
+        @if(!App::environment(['production', 'testing']))
+            console.log(user);
+        @endif
     </script>
 </html>

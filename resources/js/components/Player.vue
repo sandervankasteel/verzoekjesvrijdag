@@ -3,12 +3,13 @@
         :video-id="youtube_id"
         player-vars={}
         @ready="this.readyPlaying"
-        @ended="this.finishedPlaying">
+        @ended="this.finishedPlaying"
+        fitParent="true">
     </youtube>
 </template>
 
 <script>
-    import {mapActions, mapGetters} from "vuex";
+    import { mapActions, mapGetters } from "vuex";
 
     export default {
         name: "Player",
