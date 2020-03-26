@@ -9,8 +9,11 @@ const getters = {
         // return !!state.id;
         return true;
     },
-    getMembers: (state) => {
+    members: (state) => {
         return state.members;
+    },
+    roomName: (state) => {
+        return state.id;
     }
 };
 
