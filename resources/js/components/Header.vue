@@ -1,25 +1,23 @@
 <template>
-    <span>
-<!--        {{ roomName }} -->
-        <div class="w-1/4">Room name <span class="text-gray-800 font-bold">ABCD1234</span></div>
-        <div class="w-1/4">
-            <ButtonIcon icon="users" text-content="8 members"></ButtonIcon>
-        </div>
-        <div class="w-3/4 float-right">Share button</div>
-    </span>
+    <div class="flex w-screen">
+        <div class="w-1/4">Room name: <span class="text-gray-800 font-bold">{{ roomName }}</span></div>
+        <ButtonIcon icon-name="users" text-color="text-black">{{ members.length }} member(s)</ButtonIcon>
+        <div class="w-2/4 float-right">Share button</div>
+    </div>
 </template>
 <script>
 import { mapState, mapGetters } from "vuex";
 import ButtonIcon from "./base/ButtonIcon";
+import Button from "./base/Button";
 
 export default {
     name: "Header",
-    components: {ButtonIcon},
-    // computed: {
-    //     ...mapGetters('room', ['getMembers'])
-    // },
+    components: {Button, ButtonIcon },
+    computed: {
+        ...mapGetters('room', ['members', 'roomName'])
+    },
     data() {
-
+        return {}
     },
     methods: {
 
