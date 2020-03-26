@@ -2,8 +2,6 @@
     <div class="h-screen">
         <div class="flex h-12 items-center bg-purple-400 text-white pl-4 font-semibold">
             <Header></Header>
-<!--            <div class="w-1/4">Room name <span class="text-gray-800 font-bold">{{ roomName }}</span></div>-->
-<!--            <div class="w-3/4 float-right">Share button</div>-->
         </div>
         <div class="flex mb-4 h-10">
             <SearchBar></SearchBar>
