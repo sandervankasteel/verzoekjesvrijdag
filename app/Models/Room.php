@@ -15,4 +15,9 @@ class Room extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function playlistitems()
+    {
+        return $this->hasMany(PlaylistItem::class);
+    }
 }
