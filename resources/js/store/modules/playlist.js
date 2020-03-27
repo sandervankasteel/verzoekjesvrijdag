@@ -12,6 +12,7 @@ const state = {
         upvotes: 420,
         downvotes: 69
     }],
+    loading: true
 };
 
 // getters
@@ -41,16 +42,17 @@ const mutations = {
             window.axios.post(`/api/v1/rooms/${roomName}/add_to_playlist`, item);
         }
 
-        // if(state.items[state.items.length -1].youtube_id !== item.youtube_id) {
-            state.items.push({
-                downvotes: 0,
-                upvotes: 0,
-                ...item
-            });
-        // }
+        state.items.push({
+            downvotes: 0,
+            upvotes: 0,
+            ...item
+        });
     },
     removeFromPlaylist( state ) {
         state.items = state.items.slice(1);
+    },
+    populatePlaylist(state) {
+        window.axios.get('/api/v1/rooms/${roomName}/playlist_items')
     }
 };
 
