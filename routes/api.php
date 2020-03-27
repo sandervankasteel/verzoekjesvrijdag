@@ -28,4 +28,8 @@ Route::prefix('v1')->group(static function() {
     Route::post('rooms/join', 'RoomController@join');
 
     Route::post('rooms/{room:name}/add_to_playlist', 'RoomController@addToPlaylist');
+    Route::get('rooms/{room:name}/playlist_items', 'RoomController@playlistItems');
+
+    Route::get('playlist/{playlistitem}/upvote', 'PlaylistController@upvote');
+    Route::get('playlist/{playlistitem}/downvote', 'PlaylistController@downvote');
 });
