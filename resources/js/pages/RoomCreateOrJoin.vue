@@ -51,7 +51,7 @@
             }
         },
         computed: {
-            username: () => (window.user && window.user.name) ? window.user.name : '',
+            username: () => (window.user && window.user.name) ? window.user.name : 'Sander',
             ...mapState({
                  roomName: state => state.room.id
             }),
