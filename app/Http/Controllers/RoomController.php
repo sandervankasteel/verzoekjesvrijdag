@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\ItemAddedToPlaylist;
 use App\Events\UserJoinedRoom;
 use App\Http\Requests\AddPlaylistItem;
+use App\Http\Resources\PlaylistItem as PlaylistItemResource;
 use App\Http\Resources\Room as RoomResource;
 use App\Models\PlaylistItem;
 use App\Models\Room;
@@ -118,5 +119,12 @@ class RoomController extends Controller
         broadcast(new ItemAddedToPlaylist($room, $item))->toOthers();
 
         return response()->json('', 200);
+    }
+
+    public function playlistItems(Request $Request, Room $room)
+    {
+        $playlistItems = $room->playlistitems;
+
+        return PlaylistItemResource::collection($playlistItems);
     }
 }
