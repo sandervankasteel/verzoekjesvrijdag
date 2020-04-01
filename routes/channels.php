@@ -12,6 +12,7 @@
 */
 
 use App\Models\Room;
+use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('room.{roomName}', static function ($user, $roomName) {
     $room = Room::where('name', $roomName)->first();
