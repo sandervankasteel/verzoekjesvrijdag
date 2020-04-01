@@ -1,6 +1,9 @@
 <template>
     <div class="pl-4 pt-4">
-        <ul>
+        <div v-if="roomIsLoading">
+            <font-awesome-icon icon="spinner" class="mr-2 ml-2" spin/>
+        </div>
+        <ul v-else>
             <li v-for="(item, index) in items">
                 <PlaylistItem :item="item" :key="index"></PlaylistItem>
             </li>
@@ -13,15 +16,17 @@
 
     export default {
         name: "Playlist",
-        created () {
-            this.subscribe()
+        created: function () {
+            this.subscribe();
+            this.populatePlaylist();
         },
         computed: mapState({
             items: state => state.playlist.items,
-            roomName: state => state.room.id
+            roomName: state => state.room.id,
+            roomIsLoading: state => state.playlist.loading
         }),
         methods: {
-            ...mapActions('playlist', ['addToPlaylist']),
+            ...mapActions('playlist', ['addToPlaylist', 'populatePlaylist']),
             subscribe () {
                 Echo.join(`room.items.${this.roomName}`)
                 .listen('ItemAddedToPlaylist', (e) => {
