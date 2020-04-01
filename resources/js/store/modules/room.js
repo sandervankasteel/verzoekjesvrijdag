@@ -25,7 +25,7 @@ const actions = {
 
         commit('setRoomId', roomId);
     },
-    addMember({ state, commit}, name) {
+    addMember({ state, commit }, name) {
         commit('appendMember', name)
     },
     addMembers({ state, commit}, users) {
