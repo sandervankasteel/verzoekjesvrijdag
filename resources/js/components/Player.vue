@@ -4,7 +4,8 @@
         player-vars={}
         @ready="this.readyPlaying"
         @ended="this.finishedPlaying"
-        fitParent="true">
+        fitParent="true"
+        resize="true">
     </youtube>
 </template>
 
