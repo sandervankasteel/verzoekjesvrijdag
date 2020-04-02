@@ -1,8 +1,13 @@
 <template>
     <div class="flex w-screen">
+        <div class="flex">
+            <ButtonIcon icon-name="home" class="mr-2" v-on:click="handleHomeClick"></ButtonIcon>
+        </div>
         <div class="w-1/4">Room name: <span class="text-gray-800 font-bold">{{ roomName }}</span></div>
-        <ButtonIcon icon-name="users" text-color="text-black">{{ members.length }} member(s)</ButtonIcon>
-        <div class="w-2/4 float-right">Share button</div>
+        <div class="flex w-full justify-end">
+            <ButtonIcon icon-name="users" text-color="text-black" class="mr-2">{{ members.length }} member(s)</ButtonIcon>
+<!--            <ButtonIcon icon-name="share-alt" v-on:click="handleShareClick()" class="mr-2">Share</ButtonIcon>-->
+        </div>
     </div>
 </template>
 <script>
@@ -20,7 +25,12 @@ export default {
         return {}
     },
     methods: {
-
+        handleShareClick: function() {
+            console.log("handleShareClick")
+        },
+        handleHomeClick: function (event) {
+            console.log(event);
+        }
     }
 }
 </script>
