@@ -1,11 +1,11 @@
 <template>
-    <youtube v-if="youtube_id !== ''"
-        :video-id="youtube_id"
-        player-vars={}
+    <youtube v-if="videoId !== ''"
+        :video-id="videoId"
+        :player-vars="playerVars"
         @ready="this.readyPlaying"
         @ended="this.finishedPlaying"
-        fitParent="true"
-        resize="true">
+        :fitParent="fitParent"
+        :resize="resize">
     </youtube>
 </template>
 
@@ -23,8 +23,12 @@
         },
         data() {
             return {
-                'autoplay': false,
-                'youtube_id': 'u0oQymk7ZXE'
+                videoId: 'u0oQymk7ZXE',
+                playerVars: {
+                    // autoplay: 1
+                },
+                fitParent: true,
+                resize: true
             }
         },
         methods: {
