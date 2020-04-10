@@ -11,9 +11,9 @@
         name: "ButtonIcon",
         props: ['iconName', 'textColor'],
         components: { Button },
-        data: function() {
-
-        }
+        data() {
+            return {}
+        },
     }
 </script>
 
