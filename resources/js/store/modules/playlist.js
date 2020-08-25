@@ -21,7 +21,7 @@ const actions = {
         commit('pushToPlaylist', { item, roomName });
     },
     removeFirstFromPlaylist({ state, commit}) {
-        commit('popFromPlaylist')
+        commit('popFromPlaylist', state);
     },
     populatePlaylist({ commit, rootState}) {
         const roomName = rootState.room.id;
@@ -49,7 +49,7 @@ const mutations = {
             ...item
         });
     },
-    removeFromPlaylist( state ) {
+    popFromPlaylist( state ) {
         state.items = state.items.slice(1);
     },
 };

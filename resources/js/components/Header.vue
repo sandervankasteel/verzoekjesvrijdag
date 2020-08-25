@@ -1,7 +1,7 @@
 <template>
     <div class="flex w-screen">
         <div class="flex">
-            <ButtonIcon icon-name="home" class="mr-2" v-on:click="handleHomeClick"></ButtonIcon>
+            <ButtonIcon icon-name="home" class="mr-2" v-on:click="handleHomeClick">Home</ButtonIcon>
         </div>
         <div class="w-1/4">Room name: <span class="text-gray-800 font-bold">{{ roomName }}</span></div>
         <div class="flex w-full justify-end">
@@ -28,8 +28,9 @@ export default {
         handleShareClick: function() {
             console.log("handleShareClick")
         },
-        handleHomeClick: function (event) {
-            console.log(event);
+        handleHomeClick: function () {
+            console.log("handleHomeClick");
+            this.$router.push({ path: '/' })
         }
     }
 }

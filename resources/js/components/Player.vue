@@ -1,11 +1,11 @@
 <template>
-    <youtube v-if="videoId !== ''"
-        :video-id="videoId"
-        :player-vars="playerVars"
+    <youtube v-if="this.playing.videoId !== ''"
+        :video-id="this.playing.videoId"
+        :player-vars="this.config.playerVars"
         @ready="this.readyPlaying"
         @ended="this.finishedPlaying"
-        :fitParent="fitParent"
-        :resize="resize">
+        :fitParent="this.config.fitParent"
+        :resize="this.config.resize">
     </youtube>
 </template>
 
@@ -16,19 +16,22 @@
         name: "Player",
         computed: {
             ...mapGetters('playlist', ['getItems', 'getNextInQueue']),
-            // 'nowPlaying': this.getNextInQueue()
-            // player() {
-            //     return this.$refs.youtube.player;
-            // }
+            player() {
+                return this.$refs.youtube.player;
+            }
         },
         data() {
             return {
-                videoId: 'u0oQymk7ZXE',
-                playerVars: {
-                    // autoplay: 1
+                playing: {
+                    videoId: 'u0oQymk7ZXE',
                 },
-                fitParent: true,
-                resize: true
+                config: {
+                    playerVars: {
+                        autoplay: true
+                    },
+                    fitParent: true,
+                    resize: true
+                }
             }
         },
         methods: {
@@ -37,8 +40,13 @@
              // no sure yet
                 this.subscribe();
             },
-            finishedPlaying() {
-                console.log('We finished playing');
+            async finishedPlaying() {
+                const nextInQueue = this.getNextInQueue;
+                await this.$set(this.playing, 'videoId', nextInQueue.youtube_id);
+
+                this.removeFirstFromPlaylist();
+                await this.$refs.youtube.player.playVideo()
+
             },
             readyPlaying() {
                 // if(this.autoplay) {
